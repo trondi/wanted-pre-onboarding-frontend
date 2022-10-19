@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { PropTypes } from "prop-types";
+import React, { useState, useEffect, useRef } from 'react';
+import { PropTypes } from 'prop-types';
 
 const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
   const [edited, setEdited] = useState(false); //수정모드 플래그 값
@@ -40,18 +40,17 @@ const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
   };
 
   const onClickSubmitButton = () => {
-    setTodoList(nextTodoList); //새로운 리스트를 넣어줌
     const nextTodoList = todoList.map((item) => ({
       ...item,
       todo: item.id === todoItem.id ? newTodo : item.todo, //새로운 아이템 내용을 넣어줌
     }));
-
+    setTodoList(nextTodoList); //새로운 리스트를 넣어줌
     setEdited(false); //수정모드 > 읽기모드
   };
 
   const onClickDeleteButton = () => {
     //Delete
-    if (window.confirm("Delete it?")) {
+    if (window.confirm('Delete it?')) {
       const nextTodoList = todoList.map((item) => ({
         ...item,
         deleted: item.id === todoItem.id ? true : item.deleted,
@@ -85,7 +84,7 @@ const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
           //읽기모드
           <span
             className={`todoapp__item-ctx ${
-              todoItem.isCompleted ? "todoapp__item-ctx-checked" : ""
+              todoItem.isCompleted ? 'todoapp__item-ctx-checked' : ''
             }`}
           >
             {todoItem.todo}

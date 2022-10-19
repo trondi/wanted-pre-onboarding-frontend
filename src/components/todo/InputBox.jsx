@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
-import PropTypes from "prop-types";
-//import axios from "axios";
+import React, { useRef, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const InputBox = ({ todoList, setTodoList }) => {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
   const inputRef = useRef(null);
 
   //input 값 가져오기
@@ -21,12 +20,12 @@ const InputBox = ({ todoList, setTodoList }) => {
     });
     setTodoList(nextTodoList);
 
-    setTodo(""); // input 값을 초기화
+    setTodo(''); // input 값을 초기화
     inputRef.current.focus(); // input으로 포커싱
   };
 
   const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       onClickAddButton(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
@@ -46,14 +45,14 @@ const InputBox = ({ todoList, setTodoList }) => {
         ref={inputRef}
         placeholder="할 일을 입력해주세요"
         className="todoapp__inputbox-inp"
-        onChange={onChangeInput} // (3)
+        onChange={onChangeInput}
         onKeyDown={handleOnKeyPress}
       />
       {/* 입력 후 아이템 추가 버튼 */}
       <button
         type="submit"
         className="todoapp__inputbox-add-btn"
-        onClick={onClickAddButton} // (4)
+        onClick={onClickAddButton}
       >
         추가
       </button>
