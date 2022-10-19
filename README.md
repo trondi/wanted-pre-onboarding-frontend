@@ -1,9 +1,9 @@
-# Getting Started with Create React App
+# 프로젝트의 실행 방법
 
-## Available Scripts
+`npm start`
 
-프로젝트의 실행 방법
-데모 영상
-데모 영상은 배포 링크로 대체 가능하며, 배포 시 가산점이 부여됩니다.
+---
 
-### `npm start`
+## 데모 영상
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/42338190/196768443-46bdc72c-dad7-4c60-8202-474eb6d1066c.gif)
