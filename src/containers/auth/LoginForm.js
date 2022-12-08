@@ -15,6 +15,9 @@ const LoginForm = () => {
     authError: auth.authError,
     user: user.user,
   }));
+
+
+  
   // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
     const { value, name } = e.target;

@@ -10,8 +10,8 @@ const App = () => {
       <Route path="/@:username">
         <Route index element={<PostListPage />} />
       </Route>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      {/* <Route path="/login" element={<LoginPage />} /> */}
+      {/* <Route path="/register" element={<RegisterPage />} /> */}
       <Route path="/todo" element={<PostListPage />} />
     </Routes>
   );
