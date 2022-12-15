@@ -10,15 +10,18 @@ const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  // const [email, setEmail] = useState(emailInputRef);
+  // const [password, setPassword] = useState(passwordInputRef);
+
+  // const [emailError, setEmailError] = useState(false);
+  // const [passwordError, setPassWordError] = useState(false);
+
+  useEffect(() => {}, [emailInputRef, passwordInputRef]);
+
   const authCtx = useContext(AuthContext);
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPassWordError] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -86,23 +89,15 @@ const AuthForm = () => {
       });
   };
 
-  const emailInput = (e) => {
-    setEmail(e.target.value);
-    const regExp =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    if (regExp.test(e.target.value)) {
-      setEmailError(true);
-    } else {
-      setEmailError(false);
+  const onBlurEmailHandler = (refInput) => {
+    if (!refInput.current?.value.includes("@")) {
+      console.log(`이메일은 @가 포함되어야 합니다.`);
     }
   };
 
-  const passwordInput = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value.length < 8) {
-      setPassWordError(false);
-    } else if (e.target.value.length >= 8) {
-      setPassWordError(true);
+  const onBlurPwHandler = (refInput) => {
+    if (refInput.current?.value.length < 8) {
+      console.log(`비밀번호는 8자리 이상이여야 합니다.`);
     }
   };
 
@@ -111,29 +106,35 @@ const AuthForm = () => {
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             required
             ref={emailInputRef}
-            onChange={emailInput}
+            onChange={onBlurEmailHandler}
+            // onBlur={onBlurEmailHandler.bind(this, emailInputRef)}
           />
+          {/* {onBlurEmailHandler && (
+            <p style={{ color: "red" }}>이메일 형식에 맞지 않습니다.</p>
+          )} */}
         </div>
         <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             required
             ref={passwordInputRef}
-            onChange={passwordInput}
+            onChange={onBlurPwHandler}
+            // onBlur={onBlurPwHandler.bind(this, passwordInputRef)}
           />
+          {/* {onBlurPwHandler && (
+            <p style={{ color: "red" }}>8자 이상 입력해주세요.</p>
+          )} */}
         </div>
         <div className={classes.actions}>
-          {!isLoading && (
-            <button>{isLogin ? "Login" : "Create Account"}</button>
-          )}
+          {!isLoading && <button>{isLogin ? "로그인" : "회원가입"}</button>}
           {isLoading && <p>Sending Request...</p>}
           <button
             type="button"
